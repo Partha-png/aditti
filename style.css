@@ -536,7 +536,8 @@ button:hover{
 }
 
 .meet-field select,
-.meet-field input[type="time"]{
+.meet-field input[type="time"],
+.meet-field input[type="date"]{
     width:100%;
     padding:12px 16px;
     border:1px solid rgba(180,160,170,0.3);
@@ -550,7 +551,8 @@ button:hover{
 }
 
 .meet-field select:focus,
-.meet-field input[type="time"]:focus{
+.meet-field input[type="time"]:focus,
+.meet-field input[type="date"]:focus{
     border-color:#d4b5c2;
 }
 

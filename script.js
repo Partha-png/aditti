@@ -75,14 +75,19 @@ function showMeetForm() {
 }
 
 function confirmMeet() {
-  const day = document.getElementById("meet-day").value;
+  const dayVal = document.getElementById("meet-day").value;
   const time = document.getElementById("meet-time").value;
   const msg = document.getElementById("final-message");
 
-  if (!day || !time) {
-    msg.innerText = "pick both a day and time, meow 🥺";
+  if (!dayVal || !time) {
+    msg.innerText = "pick both a date and time, meow 🥺";
     return;
   }
+
+  /* format date nicely */
+  const dateObj = new Date(dayVal + "T00:00:00");
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const dateStr = dateObj.toLocaleDateString('en-IN', options);
 
   /* format time nicely */
   const [h, m] = time.split(":");
@@ -94,9 +99,9 @@ function confirmMeet() {
   /* send email via EmailJS */
   if (typeof emailjs !== 'undefined') {
     emailjs.send("service_jx3j4cy", "template_gtjq217", {
-      chosen_day: day,
+      chosen_day: dateStr,
       chosen_time: timeStr,
-      message: "meow chose " + day + " at " + timeStr + " after coaching ♡"
+      message: "meow chose " + dateStr + " at " + timeStr + " after coaching ♡"
     }).then(() => {
       console.log("email sent!");
     }).catch((err) => {
@@ -108,7 +113,7 @@ function confirmMeet() {
   }
 
   document.getElementById("meet-form").classList.add("hidden");
-  msg.innerHTML = "i'll be waiting on <strong>" + day + "</strong> at <strong>" + timeStr + "</strong> after your coaching ♡<br><br>see you there, meow 🐾";
+  msg.innerHTML = "i'll be waiting on <strong>" + dateStr + "</strong> at <strong>" + timeStr + "</strong> after your coaching ♡<br><br>see you there, meow 🐾";
 }
 
 /* YES BUTTON POPUP ON HOVER */
