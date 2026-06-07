@@ -101,7 +101,10 @@ function confirmMeet() {
       console.log("email sent!");
     }).catch((err) => {
       console.log("email failed:", err);
+      alert("email failed: " + JSON.stringify(err));
     });
+  } else {
+    alert("emailjs not loaded! check your internet connection.");
   }
 
   document.getElementById("meet-form").classList.add("hidden");
