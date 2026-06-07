@@ -1,3 +1,10 @@
+/* EMAILJS INIT — replace YOUR_PUBLIC_KEY with your actual key */
+(function() {
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init({ publicKey: "HJfQagNDUmIsFIt1U" });
+  }
+})();
+
 const pages = document.querySelectorAll(".page");
 
 let currentPage = 0;
@@ -83,6 +90,19 @@ function confirmMeet() {
   const ampm = hour >= 12 ? "pm" : "am";
   const hour12 = hour % 12 || 12;
   const timeStr = hour12 + ":" + m + " " + ampm;
+
+  /* send email via EmailJS */
+  if (typeof emailjs !== 'undefined') {
+    emailjs.send("service_jx3j4cy", "template_gtjq217", {
+      chosen_day: day,
+      chosen_time: timeStr,
+      message: "meow chose " + day + " at " + timeStr + " after coaching ♡"
+    }).then(() => {
+      console.log("email sent!");
+    }).catch((err) => {
+      console.log("email failed:", err);
+    });
+  }
 
   document.getElementById("meet-form").classList.add("hidden");
   msg.innerHTML = "i'll be waiting on <strong>" + day + "</strong> at <strong>" + timeStr + "</strong> after your coaching ♡<br><br>see you there, meow 🐾";
