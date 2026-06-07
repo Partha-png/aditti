@@ -344,13 +344,17 @@
                 if someday you still want
                 to walk with me,
                 even quietly
-                i’d like that.
+                i'd like that.
             </h1>
+
+            <p class="meet-subtitle">
+                after your coaching, any day you're free — just pick a day and i'll be there, meow ♡
+            </p>
 
             <div class="final-buttons">
 
-                <button onclick="showMessage()" id="yes-btn">
-                    yes ♡
+                <button onclick="showMeetForm()" id="yes-btn">
+                    yes, i'd like that ♡
                 </button>
 
                 <img src="images/adittiyesbutton.jpg" id="yes-popup-img" class="yes-popup-img">
@@ -360,6 +364,36 @@
                 </button>
 
                 <img src="images/aditti16.jpg" id="no-popup-img" class="no-popup-img">
+
+            </div>
+
+            <!-- MEET FORM (hidden initially) -->
+            <div id="meet-form" class="meet-form hidden">
+
+                <p class="meet-form-title">pick a day after coaching ♡</p>
+
+                <div class="meet-field">
+                    <label for="meet-day">which day?</label>
+                    <select id="meet-day">
+                        <option value="">choose a day...</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                </div>
+
+                <div class="meet-field">
+                    <label for="meet-time">what time after coaching?</label>
+                    <input type="time" id="meet-time">
+                </div>
+
+                <button onclick="confirmMeet()">
+                    done ♡
+                </button>
 
             </div>
 

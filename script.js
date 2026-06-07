@@ -52,14 +52,40 @@ function prevPage() {
 
 /* FINAL MESSAGE */
 
-function showMessage() {
-  document.getElementById("final-message").innerText =
-    "good. i was hoping the cat would say yes ♡";
+function showMeetForm() {
+  const form = document.getElementById("meet-form");
+  if (form) {
+    form.classList.remove("hidden");
+  }
 
   const yesPopup = document.getElementById("yes-popup-img");
   if (yesPopup) {
     yesPopup.classList.add("show");
+    setTimeout(() => {
+      yesPopup.classList.remove("show");
+    }, 2000);
   }
+}
+
+function confirmMeet() {
+  const day = document.getElementById("meet-day").value;
+  const time = document.getElementById("meet-time").value;
+  const msg = document.getElementById("final-message");
+
+  if (!day || !time) {
+    msg.innerText = "pick both a day and time, meow 🥺";
+    return;
+  }
+
+  /* format time nicely */
+  const [h, m] = time.split(":");
+  const hour = parseInt(h);
+  const ampm = hour >= 12 ? "pm" : "am";
+  const hour12 = hour % 12 || 12;
+  const timeStr = hour12 + ":" + m + " " + ampm;
+
+  document.getElementById("meet-form").classList.add("hidden");
+  msg.innerHTML = "i'll be waiting on <strong>" + day + "</strong> at <strong>" + timeStr + "</strong> after your coaching ♡<br><br>see you there, meow 🐾";
 }
 
 /* YES BUTTON POPUP ON HOVER */
